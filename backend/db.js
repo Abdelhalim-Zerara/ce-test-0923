@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 
 
+//Change to your local database
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
@@ -20,3 +21,5 @@ pool.query('SELECT 1')
 });
 
 
+
+module.exports = pool;
