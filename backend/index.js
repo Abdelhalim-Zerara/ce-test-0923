@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const userRouter = require('./routes/starRouter');
+const starRouter = require('./routes/starRouter');
 
 const app = express();
 
@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-app.use('/api/star', userRouter );
+app.use('/star', starRouter );
 
 app.listen(PORT, (req, res) => {
     console.log('listening on port ' + PORT);
