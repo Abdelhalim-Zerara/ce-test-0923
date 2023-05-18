@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-console.log(process.env.DB_PASSWORD)
 
 //Change to your local database
 const pool = new Pool({
