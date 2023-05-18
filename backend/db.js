@@ -1,25 +1,27 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
+console.log(process.env.DB_PASSWORD)
 
 //Change to your local database
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'consteldb',
-    password: 'Zehalim#5',
-    port: 5432
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
   });
-  
 
 // Test the database connection
-pool.query('SELECT 1')
-  .then(() => {
+pool.connect((err, client, release) => {
+    if (err) {
+      console.error('Error connecting to the database', err);
+      return;
+    }
+    
     console.log('Connected to the database');
-  })
-  .catch((error) => {
-    console.error('Error connecting to the database', error);
-});
-
+    release(); // Release the client back to the pool
+  });
 
 
 module.exports = pool;
